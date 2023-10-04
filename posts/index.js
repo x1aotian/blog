@@ -1,9 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { randomBtyes } = require('crypto');
+const { randomBytes } = require('crypto');
 
 const app = express();
-app.use(bodyParser)
+app.use(bodyParser.json());
 
 const posts = {};
 
@@ -12,7 +12,7 @@ app.get('/posts', (req, res) => {
 });
 
 app.post('/posts', (req, res) => {
-  const id = randomBtyes(4).toString('hex');
+  const id = randomBytes(4).toString('hex');
   const { title } = req.body;
 
   posts[id] = {
